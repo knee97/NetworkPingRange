@@ -1,7 +1,7 @@
 #!/bin/bash
 #Name: Network-Komplettping
 #Author: Nils Kneemeyer
-#Task: Pingt das gesamte Netzwerk von 192.168.1. min bis max
+#Task: Pingt ein Klasse C Netzwerk von z.B. 192.168.1.$min bis 192.168.1.$max
  
 Prg="[Network Pinger]: "
  
@@ -24,11 +24,15 @@ echo "  Beginnen bei:"; read min
 echo "  Beenden bei:"; read max
 var=$min
 typeset -i var
+
+#************ HIER IP-BASIS BEI BEDARF AENDERN! ***********
 ipb=192.168.1.
 n=0
+#**********************************************************
+
 typeset -i n
  
-echo $ipb
+echo "Die IP-Basis für ihr Klasse C Netzwerk lautet: "$ipb
 echo $Prg"Das wird etwas dauern. Bei Bedarf holen sie sich jetzt ihren Kaffee!"
 echo
 echo `date` >> History.list
@@ -37,7 +41,6 @@ while [ $var -le $max ]
     echo $ipn
     r=`ping -c 1 $ipn|grep "packet loss" |awk '{print $4}'`
     let var=1+$var
-    #echo $r
     if [ $r == 1 ]
         then echo "  ist online."
         echo "    $ip" >> History.list
@@ -51,7 +54,7 @@ while [ $var -le $max ]
 done
  
 clear
-echo "##Auswertung##"
+echo "Auswertung"
 echo "_______________"
 echo "Rechner online:"
 echo "---------------"
