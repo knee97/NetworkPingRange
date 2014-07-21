@@ -73,7 +73,6 @@ echo "+--------------------+ "
  
 echo
 echo
-#echo "done."
 echo "">> History.list
 echo "">> History.list
 echo $Prg "Programm beendet."
